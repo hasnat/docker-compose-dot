@@ -1,6 +1,15 @@
+FROM golang:1.12 as builder
+
+WORKDIR $GOPATH/src/github.com/hasnat/docker-compose-dot
+COPY . .
+RUN go get -d -v ./...
+RUN go install -v ./...
+ENV RLOG_LOG_LEVEL=WARN
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/docker-compose-dot .
+
 FROM alpine:3.3
 WORKDIR /app
 RUN apk add --no-cache openssl ca-certificates
-ADD ./build/app /app
+COPY --from=builder /go/bin/docker-compose-dot /docker-compose-dot
 
-CMD ["/app/app"]
+ENTRYPOINT ["/docker-compose-dot"]

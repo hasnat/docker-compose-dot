@@ -1,0 +1,13 @@
+version: 2
+
+services:
+  service-a:
+    image: tianon/true
+    environment:
+    - "a=b"
+    - "b=c"
+  service-b:
+    image: tianon/true
+    environment:
+      a: b
+      b: c

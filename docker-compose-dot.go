@@ -70,13 +70,14 @@ func main() {
 		err     error
 		graph   *gographviz.Graph
 		project string
+		filename string
 	)
-
-	if len(os.Args) < 2 {
-		log.Fatal("Need input file!")
+	filename = "docker-compose.yml"
+	if len(os.Args) >= 2 {
+		filename = os.Args[1]
 	}
 
-	bytes, err = ioutil.ReadFile(os.Args[1])
+	bytes, err = ioutil.ReadFile(filename)
 	if err != nil {
 		log.Fatal(err)
 	}
