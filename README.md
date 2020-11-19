@@ -20,7 +20,7 @@ Usage:
 converting a docker-compose.yml in the current dir:
 
 ```
-docker run --rm -v $(pwd):/tmp hasnat/docker-compose-dot ./app /tmp/docker-compose.yml 2> /dev/null 1> docker-compose.dot
+docker run --rm -v $(pwd):/tmp hasnat/docker-compose-dot /tmp/docker-compose.yml 2> /dev/null 1> docker-compose.dot
 ```
 
 You will need the Graphviz package to convert dot to image formats.

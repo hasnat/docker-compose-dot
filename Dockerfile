@@ -8,7 +8,7 @@ ENV RLOG_LOG_LEVEL=WARN
 RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o /go/bin/docker-compose-dot .
 
 FROM alpine:3.3
-WORKDIR /app
+
 RUN apk add --no-cache openssl ca-certificates
 COPY --from=builder /go/bin/docker-compose-dot /docker-compose-dot
 
